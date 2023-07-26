@@ -1,0 +1,87 @@
+<ngx-ui-loader text="Inicializando..."></ngx-ui-loader>
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <img
+    width="100"
+    alt="GCON"
+    height="40"
+    src="assets/image/logo_gcon2.jpg"
+  />
+  <span>Plataforma de Gestão do Conhecimento e Acesso a Informação</span>
+    <div class="spacer"></div>
+    <img
+    width="100"
+    height="40"
+    [src]="imagemLogo"
+  />
+</div>
+
+
+<div class="content" role="main">
+
+  <div [hidden]="backendForaAr">
+    <b><h3>O site está em manutenção, aguarde alguns minutos.</h3></b>
+</div>
+
+  <div [hidden]="backendNoAr">
+  <div class="linha">
+    <p-divider></p-divider>
+    <div><h3>O que você quer Fazer?</h3></div>
+    <p-divider></p-divider>
+  </div>
+  <a pButton label="Consulte sua Manifestação" (click)="consulta()" iconPos="right" [style]="{'margin-bottom': '2em', 'background-color':'#4F4F4F', 'color': 'white'}"></a>  
+  &nbsp;&nbsp;&nbsp;
+  <a pButton label="Lai - Pedido de Informação" href="http://transparencia.recife.pe.gov.br/codigos/web/lai/pedidoInformacaoForm.php" target="_blank" [style]="{'margin-bottom': '2em', 'background-color':'#d6d64b', 'color': 'white'}"></a>  
+    <div class="p-fluid p-formgrid p-grid">
+        <div class="p-col-12 p-lg-4">
+          <a (click)="denuncia()">
+          <p-card header="Denúncia" [style]="{'margin-bottom': '2em', 'background-color':'DarkRed', 'color': 'white'}">
+            <p>Comunique uma irregularidade ou ato ilícito na administração pública.</p>
+          </p-card>
+          </a>
+          </div>
+        <div class="p-col-12 p-lg-4">
+          <a (click)="elogio()">
+          <p-card header="Elogio" [style]="{'margin-bottom': '2em', 'background-color':'#000080', 'color': 'white'}">
+            <p>Expresse que você está satisfeito com o atendimento ou serviço.</p>
+          </p-card>
+          </a>
+        </div>
+        <div class="p-col-12 p-lg-4">
+          <a (click)="reclamacao()">
+          <p-card header="Reclamação" [style]="{'margin-bottom': '2em', 'background-color':'Sienna', 'color': 'white'}">
+            <p>Manifeste sua insatisfação com o atendimento/ações com o serviço.</p>
+          </p-card>
+          </a>
+          </div>
+     
+        <div class="p-col-12 p-lg-4">
+          <a (click)="solicitacao()">
+          <p-card header="Solicitação" [style]="{'margin-bottom': '2em', 'background-color':'MediumSeaGreen', 'color': 'white'}">
+            <p>Acesso à alguma ação ou serviço público prestado.</p>
+          </p-card>
+          </a>
+        </div>
+        <div class="p-col-12 p-lg-4">
+          <a (click)="sugestao()">
+          <p-card header="Sugestão" [style]="{'margin-bottom': '2em', 'background-color':'DeepSkyBlue', 'color': 'white'}">
+            <p>Envie uma idéia ou proposta de melhoria dos serviços prestado.</p>
+          </p-card>
+          </a>
+          </div>
+          <div class="p-col-12 p-lg-4">
+            <a (click)="informacao()">
+            <p-card header="Informação" [style]="{'margin-bottom': '2em', 'background-color':'DarkOrange', 'color': 'white'}">
+              <p>Pedido de comunicação de algum serviço prestado pelo município.</p>
+            </p-card>
+            </a>
+          </div>    
+      
+    </div>
+  
+
+
+  </div>
+
+
+

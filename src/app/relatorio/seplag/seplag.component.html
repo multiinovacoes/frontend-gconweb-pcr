@@ -1,0 +1,118 @@
+<ngx-ui-loader text="Processando..."></ngx-ui-loader>
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <img width="100"  height="40" alt="Angular Logo"
+  src="assets/image/logo_gcon2.jpg" />
+  <span>Plataforma de Gestão do Conhecimento e Acesso a Informação</span>
+  <div class="spacer"></div>
+</div>
+<div class="content" role="main">
+  <p-toast position="top-center" [baseZIndex]="5000"> 
+    <ng-template let-message pTemplate="message">
+      <div class="p-flex p-flex-column" style="flex: 1">
+        <div class="p-text-center">
+          <p>{{message.detail}}</p>
+        </div>
+      </div>
+    </ng-template>
+  </p-toast>
+  <form #f="ngForm" autocomplete="off" (ngSubmit)="pesquisa()">
+    <div class="linha">
+      <p-divider></p-divider>
+      <div>Relatório de Atendimentos por Período</div>
+      <p-divider></p-divider>
+    </div>
+    <div class="p-fluid p-formgrid">
+        <p-panel header="Relatório de Atendimento">
+            <div class="p-fluid p-formgrid p-grid">
+                
+              <div class="p-field p-col-12 p-md-2">
+                <label>Período</label>
+                  <p-calendar [(ngModel)]="filtro.dataInicial" name="dataInicial" [required]="true" dateFormat="dd/mm/yy" inputId="dataInicial"></p-calendar>
+              </div>
+              <div class="p-field p-col-12 p-md-2">
+                <label>&nbsp;</label>
+                  <p-calendar [(ngModel)]="filtro.dataFinal" name="dataFinal" [required]="true" dateFormat="dd/mm/yy" inputId="dataFinal"></p-calendar>
+              </div>
+            </div>
+            <div class="p-fluid p-formgrid p-grid">
+              <div class="p-field p-col-2">
+                <button pButton type="submit"
+                [disabled]="f.invalid"
+                label="Gerar Relatório"></button>
+              </div>
+              <div class="p-field p-col-1">
+                <button pButton type="button"
+                icon="pi pi-file-excel"
+                iconPos="left"
+                label="Excel"
+                (click)="exportAsXLSX()"
+                [disabled]="f.invalid || buttonsImpressao==true"></button>
+              </div>
+            </div>
+          </p-panel>
+          <br>        
+      </div>
+      <div class="p-fluid p-formgrid p-grid" [hidden]="campos">
+        <div class="p-col-12 p-lg-6">
+          <span><b>{{mensagem}}</b></span>
+        </div>
+      </div>
+      <p-card>
+        <div class="p-fluid p-formgrid p-grid">
+          <p-table [value]="atendimentoArea" [paginator]="true" [rows]="5"
+          [responsive]="true" #tabela>
+          <ng-template pTemplate="header">
+              <tr>
+                  <th style="width:8%">Protocolo</th>
+                  <th style="width:8%">Data Entrada</th>
+                  <th style="width:8%">Data Conclusão</th>
+                  <th style="width:15%">Assunto</th>
+                  <th style="width:8%">Natureza</th>
+                  <th style="width:20%">Área</th>
+                  <th style="width:10%">Bairro</th>
+                  <th style="width:5%">Origem</th>
+                  <th style="width:5%">Prioridade</th>
+                  <th style="width:5%">Tipo Usuário</th>
+
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-atendimento>
+            <tr>
+              <td style="width:8%">
+                {{atendimento.protocolo}}
+              </td>
+              <td style="width:8%">
+                {{atendimento.data}}
+              </td>
+              <td style="width:8%">
+                {{atendimento.dataConclusao}}
+              </td>
+              <td style="width:15%">
+                {{atendimento.assunto}}
+              </td>
+              <td style="width:8%">
+                {{atendimento.natureza}}
+              </td>
+              <td style="width:20%">
+                {{atendimento.area}}
+              </td>
+              <td style="width:10%">
+                {{atendimento.bairro}}
+              </td>
+              <td style="width:5%">
+                {{atendimento.origem}}
+              </td>
+              <td style="width:5%">
+                {{atendimento.prioridade}}
+              </td>
+              <td style="width:5%">
+                {{atendimento.tipoManifestante}}
+              </td>
+            </tr>
+        </ng-template>
+      </p-table>
+      
+        </div>
+      </p-card>      
+    </form>
